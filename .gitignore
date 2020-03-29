@@ -1,0 +1,14 @@
+# Gradle
+.gradle/
+build/
+
+# IntelliJ IDEA
+.idea/*
+!.idea/runConfigurations/
+!.idea/codeStyles/*
+!.idea/dataSources.local.xml
+!.idea/dataSources.xml
+out/
+*.iml
+
+*.DS_Store
