@@ -1,21 +1,18 @@
-package com.ngupta.service
+package com.nimg.examples
 
 import org.http4k.core.*
 import org.http4k.core.ContentType.Companion.TEXT_PLAIN
+import org.http4k.core.Method.*
 import org.http4k.core.Status.Companion.OK
+import org.http4k.format.Jackson
+import org.http4k.format.Jackson.json
 import org.http4k.lens.Query
 import org.http4k.lens.int
 import org.http4k.lens.string
-import org.http4k.core.Method.DELETE
-import org.http4k.core.Method.GET
-import org.http4k.core.Method.POST
-import org.http4k.core.Response
-import org.http4k.format.Jackson
 import org.http4k.routing.bind
 import org.http4k.routing.routes
 import org.http4k.server.Jetty
 import org.http4k.server.asServer
-import org.http4k.format.Jackson.json
 
 fun add(value1: Int, value2: Int): HttpHandler = {
     Response(OK).with(
@@ -50,7 +47,7 @@ fun main(args: Array<String>) {
     println(app(Request(POST, "/bob")))
     println(app(Request(DELETE, "/sue")))
 
-    val request : Request = Request(Method.GET, "/").query("age", "20")
+    val request: Request = Request(Method.GET, "/").query("age", "20")
 
     echo("Nimisha").asServer(Jetty(9000)).start()
 

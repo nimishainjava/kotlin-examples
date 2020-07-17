@@ -1,11 +1,11 @@
-package sealed
+package com.nimg.examples
 
 sealed class Animal {
-    var type : String =""
-    var age : Int = 0
+    var type: String = ""
+    var age: Int = 0
 
     open fun eat() {
-    println("default animal eat method")
+        println("default animal eat method")
     }
 }
 

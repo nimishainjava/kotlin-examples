@@ -1,7 +1,8 @@
-package helpers
+package com.nimg.references
 
 import com.natpryce.hamkrest.MatchResult
-import com.natpryce.hamkrest.MatchResult.*
+import com.natpryce.hamkrest.MatchResult.Match
+import com.natpryce.hamkrest.MatchResult.Mismatch
 import com.natpryce.hamkrest.Matcher
 
 

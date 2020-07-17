@@ -1,13 +1,7 @@
-package com.ngupta.service
+package com.nimg.examples
 
-import org.http4k.core.Body
+import org.http4k.core.*
 import org.http4k.core.ContentType.Companion.TEXT_PLAIN
-import org.http4k.core.Method
-import org.http4k.core.Request
-import org.http4k.core.Response
-import org.http4k.core.Status
-import org.http4k.core.then
-import org.http4k.core.with
 import org.http4k.filter.ServerFilters
 import org.http4k.lens.Header
 import org.http4k.lens.Query
@@ -20,10 +14,10 @@ fun main(args: Array<String>) {
 
     val nameHeader = Header.required("name")
     val ageQuery = Query.int().optional("age")
-    val childrenBody = Body.string(TEXT_PLAIN).map({ it.split(",").map(::Child) }, { it.map { it.name }.joinToString() }).toLens()
+    val childrenBody =
+        Body.string(TEXT_PLAIN).map({ it.split(",").map(::Child) }, { it.map { it.name }.joinToString() }).toLens()
 
-    val endpoint = {
-            request: Request ->
+    val endpoint = { request: Request ->
 
         val name: String = nameHeader(request)
         val age: Int? = ageQuery(request)
@@ -41,7 +35,8 @@ fun main(args: Array<String>) {
     val goodRequest = Request(Method.GET, "http://localhost:9000").with(
         nameHeader of "Jane Doe",
         ageQuery of 25,
-        childrenBody of listOf(Child("Rita"), Child("Sue")))
+        childrenBody of listOf(Child("Rita"), Child("Sue"))
+    )
 
     println(listOf("", "Request:", goodRequest, app(goodRequest)).joinToString("\n"))
 

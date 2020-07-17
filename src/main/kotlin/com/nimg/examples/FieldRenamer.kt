@@ -1,8 +1,8 @@
-package com.ngupta.service
+package com.nimg.examples
 
 interface FieldRenamer {
-    fun toJson(fieldName: String) : String
-    fun fromJson(fieldName: String) : String
+    fun toJson(fieldName: String): String
+    fun fromJson(fieldName: String): String
 
     /**
      * Helper functions for common use cases.
@@ -32,10 +32,11 @@ interface FieldRenamer {
     }
 }
 
-fun sum(a: Int, b: Int) : Int {
-    return a+b
+fun sum(a: Int, b: Int): Int {
+    return a + b
 }
-fun higherOrder(func : (Int, Int) -> Int) {
+
+fun higherOrder(func: (Int, Int) -> Int) {
     println(func)
 }
 
@@ -46,7 +47,7 @@ class Scoped {
 
 fun main(args: Array<String>) {
     FieldRenamer.camelToUnderscores("Nimisha").apply {
-         //println(this)
+        //println(this)
     }
 
     FieldRenamer.camelToUnderscores("Nimisha").also {

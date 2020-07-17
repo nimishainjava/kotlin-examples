@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +9,11 @@ public class TeamFormation {
         if (minLevel > maxLevel) return 0;
 
         List<Integer> possibleTeamMembers = new ArrayList<>();
-        for (int skill : skills) if (skill >= minLevel && skill <= maxLevel) possibleTeamMembers.add(skill);
+        for
+        (int skill : skills)
+            if (skill >= minLevel && skill <= maxLevel) possibleTeamMembers.add(skill);
         int[] possibleTeamArr = new int[possibleTeamMembers.size()];
-        for(int i = 0;i < possibleTeamArr.length;i++)
+        for (int i = 0; i < possibleTeamArr.length; i++)
             possibleTeamArr[i] = possibleTeamMembers.get(i);
         return teamsCount(possibleTeamArr, minPlayers);
     }

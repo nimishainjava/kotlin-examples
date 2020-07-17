@@ -1,35 +1,40 @@
-package com.springernature
+package com.nimg.references
+
+import java.util.Collections.emptyMap
 
 
-fun UserPermissions.toInstitutionPermissions(librarianEmail: EmailAddress): List<InstitutionPermissions> {
-    val seed = emptyMap<BPID, InstitutionPermissions>()
+fun UserPermissions.toInstitutionPermissions(librarianEmail: EmailAddress): Set<InstitutionPermission> {
+    val seed = emptyMap<BPID, InstitutionPermission>()
     val res1 = readers.fold(seed)
-    { map: Map<BPID, InstitutionPermissions>, institution: BPID ->
+    { map: Map<BPID, InstitutionPermission>, institution: BPID ->
         constituteInstitutionBasedPermissions(map, institution) { permissions ->
             permissions.copy(readers = permissions.readers + librarianEmail)
         }
     }
     val res2 = forwarders.fold(res1)
-    { map: Map<BPID, InstitutionPermissions>, institution ->
-        constituteInstitutionBasedPermissions(map, institution) { permissions ->
+    { accumulator: Map<BPID, InstitutionPermission>, institution ->
+        constituteInstitutionBasedPermissions(
+            accumulator,
+            institution
+        ) { permissions ->
             permissions.copy(forwarders = permissions.forwarders + librarianEmail)
         }
     }
     val res3 = maintainers.fold(res2)
-    { map: Map<BPID, InstitutionPermissions>, institution: BPID ->
+    { map: Map<BPID, InstitutionPermission>, institution: BPID ->
         constituteInstitutionBasedPermissions(map, institution) { permissions ->
             permissions.copy(maintainers = permissions.maintainers + librarianEmail)
         }
     }
-    return res3.values.toList()
+    return res3.values.toSet()
 }
 
 private fun constituteInstitutionBasedPermissions(
-    map: Map<BPID, InstitutionPermissions>,
+    map: Map<BPID, InstitutionPermission>,
     institution: BPID,
-    institutionPermissions: (InstitutionPermissions) -> InstitutionPermissions
-): Map<BPID, InstitutionPermissions> {
-    val permissions = map[institution] ?: InstitutionPermissions(institution = institution)
+    institutionPermissions: (InstitutionPermission) -> InstitutionPermission
+): Map<BPID, InstitutionPermission> {
+    val permissions = map[institution] ?: InstitutionPermission(institution = institution)
     return map + (institution to institutionPermissions(permissions))
 }
 
@@ -43,7 +48,7 @@ data class UserPermissions(
     val forwarders: List<BPID>
 )
 
-data class InstitutionPermissions(
+data class InstitutionPermission(
     val institution: BPID,
     val readers: List<EmailAddress> = emptyList(),
     val maintainers: List<EmailAddress> = emptyList(),

@@ -1,4 +1,4 @@
-package functions
+package com.nimg.references
 
 interface BackgroundActivity : AutoCloseable {
     fun start()
@@ -9,7 +9,8 @@ interface BackgroundActivity : AutoCloseable {
     }
 }
 
-fun backgroundActivity(startFn: () -> Unit = {}, stopFn: () -> Unit) = object : BackgroundActivity {
+fun backgroundActivity(startFn: () -> Unit = {}, stopFn: () -> Unit) = object :
+    BackgroundActivity {
     override fun start() = startFn()
     override fun stop() = stopFn()
 }
@@ -18,14 +19,16 @@ class Modify : BackgroundActivity {
     override fun start() {
         println("in modify start")
     }
+
     override fun stop() {
         println("in modify stop")
     }
 }
+
 fun applyFunctionality() {
-    Modify().apply {
-        this.start()
-    }.stop()
+    Modify().apply { this.start() }.stop()
 }
 
-fun main(args: Array<String>) { applyFunctionality() }
+fun main(args: Array<String>) {
+    applyFunctionality()
+}

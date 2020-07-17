@@ -1,22 +1,25 @@
-package sealed
+package com.nimg.examples
 
 sealed class SuperHero
 
-class Hulk: SuperHero() {
+class Hulk : SuperHero() {
     fun smashOpponent() {
 
     }
 }
+
 class SuperMan : SuperHero() {
     fun flyToKrypton() {
 
     }
 }
+
 class SpiderMan : SuperHero() {
     fun useSpiderSense() {
 
     }
 }
+
 fun actOnHero(hero: SuperHero) {
     when (hero) {
         is Hulk -> {

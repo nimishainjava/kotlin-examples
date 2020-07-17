@@ -1,21 +1,19 @@
-package com.ngupta.service
+package com.nimg.examples
 
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.ZonedDateTime
 import java.time.ZoneId
+import java.time.ZonedDateTime
 
+data class Customer(val name: String, val age: Int)
+data class Address(val street: String, val postalCode: String)
 
-
-data class Customer(val name: String, val age:Int)
-data class Address(val street:String, val postalCode: String)
-
-val customerMap = mapOf(Pair(Customer("Jack", 25), Address("NANTERRE CT", "77471")),
+val customerMap = mapOf(
+    Pair(Customer("Jack", 25), Address("NANTERRE CT", "77471")),
     Pair(Customer("Mary", 37), Address("W NORMA ST", "77009")),
     Pair(Customer("Peter", 18), Address("S NUGENT AVE", "77571")),
     Pair(Customer("Amos", 23), Address("E NAVAHO TRL", "77449")),
-    Pair(Customer("Craig", 45), Address("AVE N", "77587")))
+    Pair(Customer("Craig", 45), Address("AVE N", "77587"))
+)
 
 val customerList = customerMap.flatMap { (customer, address) -> listOf(customer) }
 
@@ -27,9 +25,9 @@ val customerList = customerMap.flatMap { (customer, address) -> listOf(customer)
 	Customer(name=Craig, age=45)
 */
 
-val addressList = customerMap.
-    flatMap { (customer, address) ->
-        listOf(address) }
+val addressList = customerMap.flatMap { (customer, address) ->
+    listOf(address)
+}
 /*
 	Address(street=NANTERRE CT, postcode=77471)
 	Address(street=W NORMA ST, postcode=77009)
@@ -50,7 +48,7 @@ val addressList = customerMap.
 
 fun main() {
     //customerList.forEach{ println(it) }
-    addressList.forEach{ println(it) }
+    addressList.forEach { println(it) }
     //customerInfos.forEach{ println(it) }
 
     val now = ZonedDateTime.of(LocalDateTime.now(), ZoneId.of("UTC"))

@@ -1,11 +1,11 @@
-package com.ngupta.service
+package com.nimg.examples
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.databind.ObjectMapper
 
 
 fun main(args: Array<String>) {
-    val jsonInput : String = "{\n" +
+    val jsonInput: String = "{\n" +
             " \"matchCriteria\": [\n" +
             "   {\n" +
             "\t\"type\":\"EmailDomain\",\n" +
@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
             "]\n" +
             "}"
 
-    val objectMapper : ObjectMapper = ObjectMapper()
+    val objectMapper: ObjectMapper = ObjectMapper()
 
     //objectMapper.valueToTree<Search>()
 
@@ -24,13 +24,13 @@ fun main(args: Array<String>) {
         it
     }
 
-  println(calc(1, 2, { a, b -> a+b }))
+    println(calc(1, 2, { a, b -> a + b }))
 }
 
 fun calc(a: Int, b: Int, opr: (Int, Int) -> Int) = opr(a, b)
 
 data class Search(val matchCriteria: List<MatchingCriterion>)
-data class MatchingCriterion(val type: CriterionType, val value :String)
+data class MatchingCriterion(val type: CriterionType, val value: String)
 
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 enum class CriterionType {

@@ -1,4 +1,4 @@
-package com.ngupta.service
+package com.nimg.kata
 
 import kotlin.system.exitProcess
 

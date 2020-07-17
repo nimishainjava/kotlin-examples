@@ -1,4 +1,4 @@
-package enums
+package com.nimg.examples
 
 enum class CardType(val color: String) {
     SILVER("gray"),
@@ -7,8 +7,8 @@ enum class CardType(val color: String) {
 }
 
 fun access() {
-    val cardType : CardType = CardType.SILVER
-    val color : String = CardType.PLATINUM.color
+    val cardType: CardType = CardType.SILVER
+    val color: String = CardType.PLATINUM.color
     println("card type: $cardType, color: $color")
 }
 
