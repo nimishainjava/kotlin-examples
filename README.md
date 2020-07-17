@@ -1,4 +1,5 @@
-# kotlin-examples
+# kotlin-tryouts
+
 My try-out area for anything Kotlin
 
 * Functional programming
